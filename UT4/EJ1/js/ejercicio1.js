@@ -1,3 +1,9 @@
+/**
+ * @author Carlos Velasco García
+ * @version 1.0
+ * @description Ejercicio 1: Verificar si un número es perfecto y capicúa.
+ */
+
 
 function esPerfecto(numero) {
     let sumaDivisores = 0;
