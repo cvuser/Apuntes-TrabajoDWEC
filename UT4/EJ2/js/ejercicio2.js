@@ -1,65 +1,117 @@
+/**
+ * @author Carlos Velasco García
+ * @version 1.0
+ * @description Ejercicio 2: Generador de Sudoku.
+ */
+
+let sudokuCompleto;
 
 function generarSudokuCompleto() {
-    const sudoku = Array.from({ length: 9 }, () => Array.from({ length: 9 }, () => 0));
+    let sudoku = Array.from({ length: 9 }, () => Array.from({ length: 9 }, () => 0));
 
-    for (let i = 0; i < 9; i++) {
-        for (let j = 0; j < 9; j++) {
-            sudoku[i][j] = (i + j) % 9 + 1;
+    function esValido(fila, columna, numero) {
+        // Verificar fila y columna
+        for (let i = 0; i < 9; i++) {
+            if (sudoku[fila][i] === numero || sudoku[i][columna] === numero) {
+                return false;
+            }
         }
+
+        // Verificar el cuadro 3x3
+        let inicioFila = Math.floor(fila / 3) * 3;
+        let inicioColumna = Math.floor(columna / 3) * 3;
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (sudoku[inicioFila + i][inicioColumna + j] === numero) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
+
+    function resolverSudoku() {
+        for (let fila = 0; fila < 9; fila++) {
+            for (let columna = 0; columna < 9; columna++) {
+                if (sudoku[fila][columna] === 0) {
+                    for (let numero = 1; numero <= 9; numero++) {
+                        if (esValido(fila, columna, numero)) {
+                            sudoku[fila][columna] = numero;
+                            if (resolverSudoku()) {
+                                return true;
+                            }
+                            sudoku[fila][columna] = 0;
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    resolverSudoku();
     return sudoku;
 }
 
 function ocultarCasillas(sudoku, dificultad) {
-    let casillasVisibles;
+    let casillasOcultas;
     switch (dificultad) {
-        case 'facil':
-            casillasVisibles = 38;
+        case "facil":
+            casillasOcultas = 43;
             break;
-        case 'medio':
-            casillasVisibles = 30;
+        case "medio":
+            casillasOcultas = 51;
             break;
-        case 'dificil':
-            casillasVisibles = 25;
+        case "dificil":
+            casillasOcultas = 56;
             break;
         default:
-            casillasVisibles = 38;
+            casillasOcultas = 43;
     }
 
-    const sudokuOculto = sudoku.map(fila => fila.map(valor => valor));
-    let casillasOcultas = 81 - casillasVisibles;
-
-    while (casillasOcultas > 0) {
-        const fila = Math.floor(Math.random() * 9);
-        const columna = Math.floor(Math.random() * 9);
-        if (sudokuOculto[fila][columna] !== 0) {
-            sudokuOculto[fila][columna] = 0;
-            casillasOcultas--;
+    let contador = 0;
+    while (contador < casillasOcultas) {
+        let fila = Math.floor(Math.random() * 9);
+        let columna = Math.floor(Math.random() * 9);
+        if (sudoku[fila][columna] !== 0) {
+            sudoku[fila][columna] = 0;
+            contador++;
         }
     }
 
-    return sudokuOculto;
+    return sudoku;
 }
 
 function mostrarSudoku(sudoku) {
-    const tabla = document.createElement('table');
-    for (let i = 0; i < 9; i++) {
-        const fila = document.createElement('tr');
-        for (let j = 0; j < 9; j++) {
-            const celda = document.createElement('td');
-            celda.textContent = sudoku[i][j] === 0 ? '' : sudoku[i][j];
-            fila.appendChild(celda);
+    const sudokuContainer = document.getElementById("sudokuContainer");
+    sudokuContainer.innerHTML = "";
+
+    const tabla = document.createElement("table");
+    for (let fila = 0; fila < 9; fila++) {
+        const tr = document.createElement("tr");
+        for (let columna = 0; columna < 9; columna++) {
+            const td = document.createElement("td");
+            if (sudoku[fila][columna] !== 0) {
+                td.textContent = sudoku[fila][columna];
+            } else {
+                td.classList.add("oculto");
+            }
+            tr.appendChild(td);
         }
-        tabla.appendChild(fila);
+        tabla.appendChild(tr);
     }
-    return tabla;
+    sudokuContainer.appendChild(tabla);
 }
 
-function generarSudoku() {
-    const dificultad = document.getElementById('dificultad').value;
-    const sudokuCompleto = generarSudokuCompleto();
-    const sudokuOculto = ocultarCasillas(sudokuCompleto, dificultad);
-    const sudokuDiv = document.getElementById('sudoku');
-    sudokuDiv.innerHTML = '';
-    sudokuDiv.appendChild(mostrarSudoku(sudokuOculto));
+function mostrarSudokuCompleto() {
+    sudokuCompleto = generarSudokuCompleto();
+    mostrarSudoku(sudokuCompleto);
+}
+
+function ocultarCasillasSegunDificultad() {
+    const dificultad = document.getElementById("dificultad").value;
+    const sudokuOculto = ocultarCasillas([...sudokuCompleto.map(fila => [...fila])], dificultad);
+    mostrarSudoku(sudokuOculto);
 }

@@ -4,18 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 2 - Generador de Sudoku</title>
+    <script src="js/ejercicio2.js" defer></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        td {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            text-align: center;
+            font-size: 18px;
+        }
+        .oculto {
+            background-color: #f0f0f0;
+            color: transparent;
+        }
+    </style>
 </head>
 <body>
     <h1>Ejercicio 2: Generador de Sudoku</h1>
+    <button onclick="mostrarSudokuCompleto()">Mostrar Sudoku Completo</button>
     <label for="dificultad">Selecciona la dificultad:</label>
     <select id="dificultad">
         <option value="facil">Fácil</option>
         <option value="medio">Medio</option>
         <option value="dificil">Difícil</option>
     </select>
-    <button onclick="generarSudoku()">Generar Sudoku</button>
-    <div id="sudoku"></div>
-
-    <script src="js/ejercicio2.js"></script>
+    <button onclick="ocultarCasillasSegunDificultad()">Ocultar Casillas</button>
+    <div id="sudokuContainer"></div>
 </body>
 </html>
