@@ -1,100 +1,119 @@
+/**
+ * @author Carlos Velasco García
+ * @version 1.0
+ * @description Ejercicio 3: Gestión de un hangar de aeronaves.
+ */
 
-class Rueda {
-    constructor(presionMaxima, presion) {
-        this.presionMaxima = presionMaxima;
-        this.presion = presion;
+// Definición de la clase Rueda
+function Rueda(presionMaxima, presion) {
+    if (presionMaxima <= 0 || presionMaxima >= 20700) {
+        throw new Error("La presión máxima debe ser superior a 0 e inferior a 20700 milibares.");
+    }
+    if (presion <= 0 || presion > presionMaxima) {
+        throw new Error("La presión actual debe ser superior a 0 e inferior a la presión máxima.");
     }
 
-    obtenerPresion() {
-        return this.presion;
-    }
-
-    presionOptima() {
-        return (this.presion / this.presionMaxima) > 0.85;
-    }
+    this.presionMaxima = presionMaxima;
+    this.presion = presion;
 }
 
-class Puntal {
-    constructor() {
-        this.ruedaIzquierda = new Rueda(20700, 18000);
-        this.ruedaDerecha = new Rueda(20700, 18000);
-    }
+Rueda.prototype.getPresionActual = function () {
+    return this.presion;
+};
 
-    desplegar() {
-        console.log("Puntal desplegado.");
-    }
+Rueda.prototype.presionOptima = function () {
+    return (this.presion / this.presionMaxima) > 0.85;
+};
 
-    replegar() {
-        console.log("Puntal replegado.");
-    }
+// Definición de la clase Puntal
+function Puntal() {
+    this.ruedaIzquierda = new Rueda(20699, 18000); // Cambiado a 20699
+    this.ruedaDerecha = new Rueda(20699, 18000);   // Cambiado a 20699
 }
 
-class TrenAterrizaje {
-    constructor() {
-        this.frontal = new Puntal();
-        this.izquierdo = new Puntal();
-        this.derecho = new Puntal();
-        this.palanca = "bajada";
-    }
+Puntal.prototype.desplegar = function () {
+    console.log("Puntal desplegado.");
+};
 
-    subirPalanca() {
-        this.palanca = "subida";
-        console.log("Palanca subida.");
-    }
+Puntal.prototype.replegar = function () {
+    console.log("Puntal replegado.");
+};
 
-    bajarPalanca() {
-        this.palanca = "bajada";
-        console.log("Palanca bajada.");
-    }
+// Definición de la clase TrenAterrizaje
+function TrenAterrizaje() {
+    this.frontal = new Puntal();
+    this.izquierdo = new Puntal();
+    this.derecho = new Puntal();
 }
 
-class Aeronave {
-    constructor(id, combustible) {
-        this.id = id;
-        this.combustible = combustible;
-        this.trenAterrizaje = new TrenAterrizaje();
-    }
+TrenAterrizaje.prototype.subir = function () {
+    console.log("Tren de aterrizaje subido.");
+};
 
-    despegar() {
-        if (this.combustible > 0 && this.trenAterrizaje.palanca === "subida") {
-            console.log(`Aeronave ${this.id} despegando.`);
-        } else {
-            console.log(`Aeronave ${this.id} no puede despegar.`);
-        }
-    }
+TrenAterrizaje.prototype.bajar = function () {
+    console.log("Tren de aterrizaje bajado.");
+};
 
-    aterrizar() {
-        console.log(`Aeronave ${this.id} aterrizando.`);
-    }
+// Definición de la clase Aeronave
+function Aeronave(id, combustible) {
+    this.id = id;
+    this.combustible = combustible;
+    this.trenAterrizaje = new TrenAterrizaje();
 }
 
-class Hangar {
-    constructor() {
-        this.aeronaves = [];
-    }
+Aeronave.prototype.despegar = function () {
+    const presionOptima =
+        this.trenAterrizaje.frontal.ruedaIzquierda.presionOptima() &&
+        this.trenAterrizaje.frontal.ruedaDerecha.presionOptima() &&
+        this.trenAterrizaje.izquierdo.ruedaIzquierda.presionOptima() &&
+        this.trenAterrizaje.izquierdo.ruedaDerecha.presionOptima() &&
+        this.trenAterrizaje.derecho.ruedaIzquierda.presionOptima() &&
+        this.trenAterrizaje.derecho.ruedaDerecha.presionOptima();
 
-    agregarAeronave(aeronave) {
-        this.aeronaves.push(aeronave);
+    if (this.combustible > 0 && presionOptima) {
+        console.log(`Aeronave ${this.id} ha despegado.`);
+    } else {
+        console.log(`Aeronave ${this.id} no puede despegar. Verifique el combustible y la presión de las ruedas.`);
     }
+};
 
-    listarAeronaves() {
-        const aeronavesDiv = document.getElementById('aeronaves');
-        aeronavesDiv.innerHTML = '';
-        this.aeronaves.forEach(aeronave => {
-            const info = document.createElement('p');
-            info.textContent = `Aeronave ID: ${aeronave.id}, Combustible: ${aeronave.combustible}`;
-            aeronavesDiv.appendChild(info);
-        });
-    }
+Aeronave.prototype.aterrizar = function () {
+    console.log(`Aeronave ${this.id} ha aterrizado.`);
+};
+
+// Definición de la clase Hangar
+function Hangar() {
+    this.aeronaves = [];
 }
 
+Hangar.prototype.agregarAeronave = function (aeronave) {
+    this.aeronaves.push(aeronave);
+};
+
+Hangar.prototype.listarAeronaves = function () {
+    const output = document.getElementById("output");
+    output.innerHTML = "<h2>Aeronaves en el hangar:</h2><ul>";
+    this.aeronaves.forEach(aeronave => {
+        output.innerHTML += `<li>Aeronave ID: ${aeronave.id}, Combustible: ${aeronave.combustible}</li>`;
+    });
+    output.innerHTML += "</ul>";
+};
+
+// Crear dos aeronaves y agregarlas al hangar
 const hangar = new Hangar();
-const aeronave1 = new Aeronave(1, 100);
-const aeronave2 = new Aeronave(2, 50);
+
+const aeronave1 = new Aeronave("A001", 1000);
+const aeronave2 = new Aeronave("A002", 2000);
 
 hangar.agregarAeronave(aeronave1);
 hangar.agregarAeronave(aeronave2);
 
-function listarAeronaves() {
-    hangar.listarAeronaves();
-}
+// Listar las aeronaves en el hangar
+hangar.listarAeronaves();
+
+// Probar el despegue y aterrizaje de las aeronaves
+aeronave1.despegar();
+aeronave1.aterrizar();
+
+aeronave2.despegar();
+aeronave2.aterrizar();
