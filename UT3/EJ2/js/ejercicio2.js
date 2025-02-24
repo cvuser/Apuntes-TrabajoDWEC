@@ -12,7 +12,6 @@ const productos = [
     5, 'Queso manchego', 8.75
 ];
 
-// Función para obtener los productos ordenados por precio
 function obtenerProductosOrdenados() {
     let productosOrdenados = [];
     for (let i = 0; i < productos.length; i += 3) {
@@ -25,7 +24,6 @@ function obtenerProductosOrdenados() {
     return productosOrdenados.sort((a, b) => b.precio - a.precio);
 }
 
-// Función para mostrar el producto más barato y más caro
 function mostrarProductosExtremos() {
     let productosOrdenados = obtenerProductosOrdenados();
     let masBarato = productosOrdenados[productosOrdenados.length - 1];
@@ -38,18 +36,31 @@ function mostrarProductosExtremos() {
     document.getElementById("output").innerHTML += output;
 }
 
-// Función para crear una cesta
+function mostrarProductosOrdenados() {
+    let productosOrdenados = obtenerProductosOrdenados();
+    let output = "<h2>Productos ordenados de mayor a menor precio:</h2><ul>";
+    productosOrdenados.forEach(producto => {
+        output += `<li>${producto.descripcion} - ${producto.precio}€</li>`;
+    });
+    output += "</ul>";
+    document.getElementById("output").innerHTML += output;
+}
+
 function crearCesta() {
     let cesta = [];
     while (true) {
         let codigo = prompt("Introduce el código del producto (o cancela para finalizar):");
         if (codigo === null) break;
+
         let unidades = prompt("Introduce el número de unidades:");
         if (unidades === null) break;
 
-        let producto = productos.find((p, index) => index % 3 === 0 && p === parseInt(codigo));
-        if (producto) {
-            cesta.push({ codigo, unidades: parseInt(unidades) });
+        // Buscar el producto en el array
+        let productoIndex = productos.indexOf(parseInt(codigo));
+        if (productoIndex !== -1) {
+            let descripcion = productos[productoIndex + 1];
+            let precio = productos[productoIndex + 2];
+            cesta.push({ codigo, descripcion, precio, unidades: parseInt(unidades) });
         } else {
             alert("Código de producto no válido.");
         }
@@ -58,16 +69,15 @@ function crearCesta() {
     let total = 0;
     let output = "<h2>Contenido de la cesta:</h2><ul>";
     cesta.forEach(item => {
-        let producto = productos.find((p, index) => index % 3 === 0 && p === item.codigo);
-        let descripcion = productos[productos.indexOf(producto) + 1];
-        let precio = productos[productos.indexOf(producto) + 2];
-        total += precio * item.unidades;
-        output += `<li>${descripcion} - ${item.unidades} ud(s) - ${precio * item.unidades}€</li>`;
+        let subtotal = item.precio * item.unidades;
+        total += subtotal;
+        output += `<li>${item.descripcion} - ${item.unidades} ud(s) - ${subtotal.toFixed(2)}€</li>`;
     });
     output += `</ul><p>Total de la cesta: ${total.toFixed(2)}€</p>`;
     document.getElementById("output").innerHTML += output;
 }
 
-// Mostrar productos extremos y crear cesta
+// Mostrar productos extremos, listado ordenado y crear cesta
 mostrarProductosExtremos();
+mostrarProductosOrdenados();
 crearCesta();
