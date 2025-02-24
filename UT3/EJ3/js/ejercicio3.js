@@ -15,11 +15,11 @@ function validaCampo(campo, dato) {
         case "movil":
             return /^\d{3}-\d{3}-\d{3}$/.test(dato);
         case "localidad":
-            return /^[A-Z]{5,40}$/.test(dato);
+            return /^[A-Z]{3,40}$/.test(dato);
         case "curso":
             return /^[1-4]$/.test(dato);
         case "examenes":
-            return ["MADRID", "CORUÑA", "BILBAO", "SEVILLA"].includes(dato);
+            return ["MADRID", "OVIEDO", "BILBAO", "SEVILLA"].includes(dato);
         case "observaciones":
             return dato.length <= 200;
         default:
