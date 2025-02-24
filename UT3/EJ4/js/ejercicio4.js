@@ -24,18 +24,27 @@ function mostrarMensajeCookies() {
     let email = prompt("Introduce tu email:");
 
     if (nombre && email) {
-        let aceptar = confirm("Nuestra web utiliza cookies. ¿Aceptas?");
+        // Mostrar el mensaje de cookies
+        let aceptar = confirm(
+            "Nuestra web utiliza cookies propias y de terceros para analizar sus hábitos de navegación y elaborar estadísticas sobre su interacción con nuestro sitio web, así como mostrar botones de compartición de contenido en redes sociales. Puede obtener más información en nuestra Política de Cookies.\n\n¿Aceptas las cookies?"
+        );
+
         if (aceptar) {
+            // Si el usuario acepta, crear una cookie con el nombre y el contador de visitas
             let contador = parseInt(getCookie("contador")) || 0;
             contador++;
             setCookie("nombre", nombre, 30);
             setCookie("contador", contador, 30);
 
+            // Mostrar el nombre y el número de visitas
             document.getElementById("output").innerHTML = `
                 <p>Hola, ${nombre}. Has visitado esta página ${contador} veces.</p>
             `;
         } else {
-            alert("Cookies no aceptadas.");
+            // Si el usuario rechaza, no hacer nada
+            document.getElementById("output").innerHTML = `
+                <p>Hola, ${nombre}. Has rechazado las cookies.</p>
+            `;
         }
     } else {
         alert("Debes introducir un nombre y un email válidos.");
