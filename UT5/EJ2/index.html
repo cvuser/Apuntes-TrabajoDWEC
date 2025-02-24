@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 - Panel de Dibujo</title>
+    <style>
+        #tablero {
+            display: grid;
+            grid-template-columns: repeat(9, 40px);
+            grid-template-rows: repeat(9, 40px);
+            gap: 1px;
+        }
+        .cuadricula {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+        }
+        #paleta {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .color {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejercicio 2: Panel de Dibujo</h1>
+    <div id="paleta">
+        <div class="color" style="background-color: black;"></div>
+        <div class="color" style="background-color: red;"></div>
+        <div class="color" style="background-color: green;"></div>
+        <div class="color" style="background-color: blue;"></div>
+        <div class="color" style="background-color: yellow;"></div>
+        <div class="color" style="background-color: white;"></div>
+    </div>
+    <div id="mensajePincel">Pincel Desactivado</div>
+    <div id="tablero"></div>
+
+    <script src="js/ejercicio2.js"></script>
+</body>
+</html>

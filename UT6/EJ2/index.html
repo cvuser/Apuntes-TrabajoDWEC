@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 - Aplicación Web con jQuery</title>
+    <style>
+        .noticia {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejercicio 2: Aplicación Web con jQuery</h1>
+    <div id="periodicos">
+        <a href="https://www.elpais.com">El País</a>
+        <a href="https://www.elmundo.es">El Mundo</a>
+        <a href="https://www.abc.es">ABC</a>
+    </div>
+    <p id="numEnlaces"></p>
+
+    <div id="noticias">
+        <div class="noticia">Noticia 1: Lorem ipsum dolor sit amet.</div>
+        <div class="noticia">Noticia 2: Consectetur adipiscing elit.</div>
+    </div>
+    <button id="mostrar">Mostrar Noticias</button>
+    <button id="ocultar">Ocultar Noticias</button>
+
+    <textarea id="nuevaNoticia" maxlength="150" placeholder="Escribe una nueva noticia (máx. 150 caracteres)"></textarea>
+    <button id="añadirNoticia">Añadir Noticia</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/ejercicio2.js"></script>
+</body>
+</html>

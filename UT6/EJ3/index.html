@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 - Juego FASTCLICK</title>
+    <style>
+        #juego {
+            position: relative;
+            height: 500px;
+            border: 1px solid #000;
+        }
+        #botonPulsame {
+            position: absolute;
+            width: 50px;
+            height: 75px;
+            background-color: red;
+            color: white;
+            text-align: center;
+            line-height: 75px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejercicio 3: Juego FASTCLICK</h1>
+    <div id="juego">
+        <div id="botonPulsame">PÚLSAME</div>
+    </div>
+    <p>Tiempo restante: <span id="tiempoRestante">10</span> segundos</p>
+    <button id="comoSeJuega">¿CÓMO SE JUEGA?</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/ejercicio3.js"></script>
+</body>
+</html>
