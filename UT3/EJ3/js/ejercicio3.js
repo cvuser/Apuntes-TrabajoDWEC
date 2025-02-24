@@ -1,3 +1,8 @@
+/**
+ * @author Carlos Velasco García
+ * @version 1.0
+ * @description Ejercicio 3: Validador de datos usando expresiones regulares.
+ */
 
 function validaCampo(campo, dato) {
     switch (campo) {

@@ -1,3 +1,8 @@
+/**
+ * @author Carlos Velasco García
+ * @version 1.0
+ * @description Ejercicio 4: Manejo de cookies en JavaScript.
+ */
 
 function getCookie(nombre) {
     let cookies = document.cookie.split("; ");

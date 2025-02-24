@@ -1,34 +1,54 @@
+/**
+ * @author Carlos Velasco García
+ * @version 1.0
+ * @description Ejercicio 1: Uso de los objetos Number y String en JavaScript.
+ */
 
 // Caso 1: Objeto Number
-let numero1 = 10.2345;
-let numero2 = 10000000;
-let numero3 = 123456;
-
-let output = `<h2>Caso 1 - Objeto Number</h2>
-              <p>Número Original: ${numero1}</p>
-              <p>Decimales Fijos: ${numero1.toFixed(2)}</p>
-              <p>Número Original: ${numero2}</p>
-              <p>Exponencial: ${numero2.toExponential()}</p>
-              <p>Número Original: ${numero3}</p>
-              <p>Precisión: ${numero3.toPrecision(2)}</p>`;
+function casoNumber() {
+    let numero1 = parseFloat(prompt("Introduce el primer número:"));
+    if (isNaN(numero1)) {
+        alert("Por favor, introduce un número válido.");
+    } else {
+        let numero2 = parseFloat(prompt("Introduce el segundo número:"));
+        if (isNaN(numero2)) {
+            alert("Por favor, introduce un número válido.");
+        } else {
+            let output = `<h2>Caso 1 - Objeto Number</h2>
+                          <p>Número Original 1: ${numero1}</p>
+                          <p>Decimales Fijos (2) del primer número: ${numero1.toFixed(2)}</p>
+                          <p>Número Original 2: ${numero2}</p>
+                          <p>Notación Exponencial del segundo número: ${numero2.toExponential()}</p>
+                          <p>Precisión (4 dígitos) del segundo número: ${numero2.toPrecision(4)}</p>`;
+            document.getElementById("output").innerHTML += output;
+        }
+    }
+}
 
 // Caso 2: Objeto String
-let cadena1 = "Esta es la primera cadena";
-let cadena2 = "Esta es la segunda cadena";
-let cadena3 = "Esta es la última cadena";
+function casoString() {
+    let cadena = prompt("Introduce una cadena de texto:");
+    if (cadena) {
+        let posicion = 15; // Posición específica en la cadena
+        let caracter = cadena.charAt(posicion); // Carácter en la posición 15
+        let concatenacion = cadena + " " + prompt("Introduce otra cadena para concatenar:"); // Concatenación de cadenas
+        let ultimacadena = prompt("Introduce otra cadena para concatenar:"); // Concatenación de cadenas
+        let posicionC = ultimacadena.indexOf('c'); // Posición de la letra 'c'
 
-let posicion = 15;
-let caracter = cadena1.charAt(posicion);
-let concatenacion = cadena1 + cadena2;
-let posicionC = cadena3.indexOf('c');
+        let output = `<h2>Caso 2 - Objeto String</h2>
+                      <p>Cadena Original: ${cadena}</p>
+                      <p>Posicion en la cadena: ${posicion}</p>
+                      <p>La posición 15 en la cadena: ${caracter}</p>
+                      <p>Cadena Original: ${cadena}</p>
+                      <p>Concatenación de cadenas: ${concatenacion}</p>                      
+                      <p>Cadena Original: ${ultimacadena}</p>
+                      <p>Posición de la letra 'c': ${posicionC}</p>`;
+        document.getElementById("output").innerHTML += output;
+    } else {
+        alert("Por favor, introduce una cadena de texto.");
+    }
+}
 
-output += `<h2>Caso 2 - Objeto String</h2>
-           <p>Cadena Original: ${cadena1}</p>
-           <p>Posición en la cadena: ${posicion}</p>
-           <p>La Posición ${posicion} de la cadena "${cadena1}" es "${caracter}"</p>
-           <p>Cadena Original: ${cadena2}</p>
-           <p>La concatenación de las cadenas es: ${concatenacion}</p>
-           <p>Cadena Original: ${cadena3}</p>
-           <p>El valor "c" se encuentra en la posición ${posicionC}</p>`;
-
-document.getElementById("output").innerHTML = output;
+// Ejecutar ambos casos
+casoNumber();
+casoString();

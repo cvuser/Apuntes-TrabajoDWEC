@@ -1,3 +1,8 @@
+/**
+ * @author Carlos Velasco García
+ * @version 1.0
+ * @description Ejercicio 2: Gestión de cestas de Navidad.
+ */
 
 const productos = [
     1, 'Botella de cava', 5.10,
