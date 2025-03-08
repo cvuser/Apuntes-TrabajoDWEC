@@ -1,30 +1,40 @@
+/**
+ * @author Carlos Velasco García
+ * @version 1.0
+ * @description Ejercicio 1: Botonera Flexible.
+ */
 
 function generarBotonera() {
-    const dimension = parseInt(document.getElementById('dimension').value);
-    const botonera = document.getElementById('botonera');
-    const mensajeError = document.getElementById('mensajeError');
+    const dimensionInput = document.getElementById("dimension");
+    const botonera = document.getElementById("botonera");
+    const mensajeError = document.getElementById("mensajeError");
 
-    // Limpiar botonera y mensaje de error
-    botonera.innerHTML = '';
-    mensajeError.textContent = '';
+    // Limpiar la botonera y el mensaje de error
+    botonera.innerHTML = "";
+    mensajeError.textContent = "";
 
+    // Obtener la dimensión introducida por el usuario
+    const dimension = parseInt(dimensionInput.value);
+
+    // Validar la dimensión
     if (isNaN(dimension) || dimension <= 0) {
-        mensajeError.textContent = 'La botonera debe tener una dimensión mayor que 0.';
+        mensajeError.textContent = "La botonera debe tener una dimensión mayor que 0.";
         return;
     }
 
+    // Generar la botonera en formato de matriz
     botonera.style.gridTemplateColumns = `repeat(${dimension}, 50px)`;
-    botonera.style.gridTemplateRows = `repeat(${dimension}, 50px)`;
-
-    for (let i = 0; i < dimension; i++) {
-        for (let j = 0; j < dimension; j++) {
-            const boton = document.createElement('button');
-            boton.className = 'boton';
-            boton.textContent = `${i + 1},${j + 1}`;
-            boton.addEventListener('click', () => {
-                alert(`Has pulsado el botón situado en la fila ${i + 1} y en la columna ${j + 1}`);
+    let contador = 1; // Contador para numerar los botones del 1 al 100
+    for (let fila = 1; fila <= dimension; fila++) {
+        for (let columna = 1; columna <= dimension; columna++) {
+            const boton = document.createElement("button");
+            boton.className = "boton";
+            boton.textContent = contador; // Numerar los botones del 1 al 100
+            boton.addEventListener("click", () => {
+                alert(`Has pulsado el botón situado en la fila ${fila} y en la columna ${columna}`);
             });
             botonera.appendChild(boton);
+            contador++; // Incrementar el contador
         }
     }
 }
