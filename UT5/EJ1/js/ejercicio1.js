@@ -9,32 +9,29 @@ function generarBotonera() {
     const botonera = document.getElementById("botonera");
     const mensajeError = document.getElementById("mensajeError");
 
-    // Limpiar la botonera y el mensaje de error
     botonera.innerHTML = "";
     mensajeError.textContent = "";
 
-    // Obtener la dimensión introducida por el usuario
+    // Obtener la dimensión
     const dimension = parseInt(dimensionInput.value);
 
-    // Validar la dimensión
     if (isNaN(dimension) || dimension <= 0) {
         mensajeError.textContent = "La botonera debe tener una dimensión mayor que 0.";
         return;
     }
 
-    // Generar la botonera en formato de matriz
     botonera.style.gridTemplateColumns = `repeat(${dimension}, 50px)`;
-    let contador = 1; // Contador para numerar los botones del 1 al 100
+    let contador = 1;
     for (let fila = 1; fila <= dimension; fila++) {
         for (let columna = 1; columna <= dimension; columna++) {
             const boton = document.createElement("button");
             boton.className = "boton";
-            boton.textContent = contador; // Numerar los botones del 1 al 100
+            boton.textContent = contador;
             boton.addEventListener("click", () => {
                 alert(`Has pulsado el botón situado en la fila ${fila} y en la columna ${columna}`);
             });
             botonera.appendChild(boton);
-            contador++; // Incrementar el contador
+            contador++;
         }
     }
 }

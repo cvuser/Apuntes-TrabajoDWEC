@@ -77,7 +77,6 @@ function crearCesta() {
     document.getElementById("output").innerHTML += output;
 }
 
-// Mostrar productos extremos, listado ordenado y crear cesta
 mostrarProductosExtremos();
 mostrarProductosOrdenados();
 crearCesta();

@@ -4,7 +4,6 @@
  * @description Ejercicio 3: Gestión de un hangar de aeronaves usando clases.
  */
 
-// Clase Rueda
 class Rueda {
     constructor(presionMaxima, presion) {
         if (presionMaxima <= 0 || presionMaxima >= 20700) {
@@ -27,11 +26,10 @@ class Rueda {
     }
 }
 
-// Clase Puntal
 class Puntal {
     constructor() {
-        this.ruedaIzquierda = new Rueda(20699, 18000); // Presión máxima menor a 20700
-        this.ruedaDerecha = new Rueda(20699, 18000);   // Presión máxima menor a 20700
+        this.ruedaIzquierda = new Rueda(20699, 18000);
+        this.ruedaDerecha = new Rueda(20699, 18000);
     }
 
     desplegar() {
@@ -43,7 +41,7 @@ class Puntal {
     }
 }
 
-// Clase TrenAterrizaje
+
 class TrenAterrizaje {
     constructor() {
         this.frontal = new Puntal();
@@ -60,7 +58,6 @@ class TrenAterrizaje {
     }
 }
 
-// Clase Aeronave
 class Aeronave {
     constructor(id, combustible) {
         this.id = id;
@@ -89,7 +86,6 @@ class Aeronave {
     }
 }
 
-// Clase Hangar
 class Hangar {
     constructor() {
         this.aeronaves = [];
@@ -109,7 +105,6 @@ class Hangar {
     }
 }
 
-// Crear dos aeronaves y agregarlas al hangar
 const hangar = new Hangar();
 
 const aeronave1 = new Aeronave("A001", 1000);
@@ -118,7 +113,6 @@ const aeronave2 = new Aeronave("A002", 2000);
 hangar.agregarAeronave(aeronave1);
 hangar.agregarAeronave(aeronave2);
 
-// Listar las aeronaves en el hangar
 hangar.listarAeronaves();
 
 aeronave1.despegar();

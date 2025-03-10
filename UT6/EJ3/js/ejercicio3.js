@@ -1,3 +1,8 @@
+/**
+ * @author Carlos Velasco García
+ * @version 1.0
+ * @description Ejercicio 3: Juego FASTCLICK.
+ */
 
 let puntuacion = 0;
 let tiempoRestante = 10;

@@ -1,9 +1,15 @@
+/**
+ * @author Carlos Velasco García
+ * @version 1.0
+ * @description Ejercicio 2: Aplicación Web Prensa.
+ */
+
 $(document).ready(function () {
-    // a) Número de enlaces a periódicos
+    // a)
     const numEnlaces = $('#periodicos a').length;
     $('#contadorEnlaces').text(numEnlaces);
 
-    // b) Mostrar y ocultar noticias individuales
+    // b)
     $('#noticias').on('click', '.mostrar', function () {
         $(this).closest('.noticia').find('a').show();
     });
@@ -12,7 +18,7 @@ $(document).ready(function () {
         $(this).closest('.noticia').find('a').hide();
     });
 
-    // c) Añadir nueva noticia
+    // c)
     $('#añadirNoticia').click(function () {
         const nuevaNoticia = $('#nuevaNoticia').val().trim();
         if (nuevaNoticia) {

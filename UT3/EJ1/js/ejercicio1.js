@@ -4,7 +4,7 @@
  * @description Ejercicio 1: Uso de los objetos Number y String en JavaScript.
  */
 
-// Caso 1: Objeto Number
+// Caso 1
 function casoNumber() {
     let numero1 = parseFloat(prompt("Introduce el primer número:"));
     if (isNaN(numero1)) {
@@ -25,7 +25,7 @@ function casoNumber() {
     }
 }
 
-// Caso 2: Objeto String
+// Caso 2
 function casoString() {
     let cadena = prompt("Introduce una cadena de texto:");
     if (cadena) {
@@ -49,6 +49,5 @@ function casoString() {
     }
 }
 
-// Ejecutar ambos casos
 casoNumber();
 casoString();

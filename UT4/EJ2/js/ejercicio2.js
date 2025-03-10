@@ -17,7 +17,6 @@ function generarSudokuCompleto() {
             }
         }
 
-        // Verificar el cuadro 3x3
         let inicioFila = Math.floor(fila / 3) * 3;
         let inicioColumna = Math.floor(columna / 3) * 3;
         for (let i = 0; i < 3; i++) {

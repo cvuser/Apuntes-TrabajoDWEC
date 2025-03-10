@@ -36,7 +36,6 @@ function mostrarMensajeCookies() {
             setCookie("nombre", nombre, 30);
             setCookie("contador", contador, 30);
 
-            // Mostrar el nombre y el número de visitas
             document.getElementById("output").innerHTML = `
                 <p>Hola, ${nombre}. Has visitado esta página ${contador} veces.</p>
             `;

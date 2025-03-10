@@ -3,33 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predicción del Tiempo en Gijón</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Predicción del Tiempo en Gijón - AEMET</title>
+    <link rel="stylesheet" href="./css/styes.css">
+    <script src="./js/scripts.js"></script>
 </head>
 <body>
     <header>
         <h1>Predicción del Tiempo en Gijón</h1>
     </header>
 
-    <section id="tiempo">
+    <section id="prediccion">
         <h2>Predicción para los próximos días</h2>
-        <div id="prediccion"></div>
+        <div id="contenedor-prediccion"></div>
+        <button id="mostrar-mas">Mostrar más información</button>
     </section>
 
-    <section id="info-legal">
-        <p>© AEMET. Autorizado el uso de la información y su reproducción citando a AEMET como autora de la misma. <a href="https://www.aemet.es/es/nota_legal" target="_blank">Más información</a></p>
+    <section id="informacion-adicional" style="display: none;">
+        <h2>Información Adicional para el Día Actual</h2>
+        <div id="contenedor-informacion-adicional"></div>
     </section>
 
-    <section id="info-adicional">
-        <button id="mostrarInfoAdicional">Mostrar Información Adicional</button>
-        <div id="detalles-adicionales"></div>
+    <section id="informacion-legal">
+        <h2>Información Legal</h2>
+        <p>
+            © AEMET. Autorizado el uso de la información y su reproducción citando a AEMET como autora de la misma.
+            <a href="https://www.aemet.es/es/nota_legal" target="_blank">Más información</a>.
+        </p>
     </section>
 
     <footer>
-        <p>Autor: Tu Nombre</p>
-        <p>Curso: 2º DAW - 2023/2024</p>
+        <p>Autor: Carlos Velasco García</p>
+        <p>Curso: 2º DAW - Desarrollo Web en Entorno Cliente</p>
+        <p>CIFP La Laboral</p>
     </footer>
 
-    <script src="js/script.js"></script>
 </body>
 </html>
