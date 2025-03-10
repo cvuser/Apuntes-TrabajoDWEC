@@ -1,19 +1,17 @@
+/**
+ * @author Carlos Velasco García
+ * @version 1.0
+ * @description Ejercicio 2: Panel de Dibujo.
+ */
 
 let colorSeleccionado = null;
 
-document.querySelectorAll('.color').forEach(color => {
-    color.addEventListener('click', () => {
-        colorSeleccionado = color.style.backgroundColor;
-        document.getElementById('mensajePincel').textContent = `Pincel Activado - Color: ${colorSeleccionado}`;
-    });
-});
-
-const tablero = document.getElementById('tablero');
+const tablero = document.getElementById("tablero");
 for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-        const cuadricula = document.createElement('div');
-        cuadricula.className = 'cuadricula';
-        cuadricula.addEventListener('click', () => {
+        const cuadricula = document.createElement("div");
+        cuadricula.className = "cuadricula";
+        cuadricula.addEventListener("click", () => {
             if (colorSeleccionado) {
                 cuadricula.style.backgroundColor = colorSeleccionado;
             }
@@ -22,14 +20,24 @@ for (let i = 0; i < 9; i++) {
     }
 }
 
-function limpiarTablero() {
-    document.querySelectorAll('.cuadricula').forEach(cuadricula => {
-        cuadricula.style.backgroundColor = '';
-    });
-}
 
-// Añadir un botón para limpiar el tablero
-const botonLimpiar = document.createElement('button');
-botonLimpiar.textContent = 'Limpiar Tablero';
-botonLimpiar.addEventListener('click', limpiarTablero);
-document.body.appendChild(botonLimpiar);
+const colores = document.querySelectorAll(".color");
+const mensajePincel = document.getElementById("mensajePincel");
+
+colores.forEach(color => {
+    color.addEventListener("click", () => {
+        colorSeleccionado = color.getAttribute("data-color");
+        mensajePincel.textContent = `Pincel Activado - Color: ${colorSeleccionado}`;
+    });
+});
+
+// limpiar 
+const botonLimpiar = document.getElementById("limpiarTablero");
+botonLimpiar.addEventListener("click", () => {
+    const cuadriculas = document.querySelectorAll(".cuadricula");
+    cuadriculas.forEach(cuadricula => {
+        cuadricula.style.backgroundColor = "white";
+    });
+    mensajePincel.textContent = "Pincel Desactivado";
+    colorSeleccionado = null;
+});
