@@ -28,7 +28,6 @@ function quitarAficion() {
         option.textContent = seleccionada;
         aficionesDisponibles.appendChild(option);
 
-        // Eliminar la afición seleccionada de la lista de seleccionadas
         const opcionSeleccionada = Array.from(aficionesSeleccionadas.options).find(opt => opt.value === seleccionada);
         if (opcionSeleccionada) {
             aficionesSeleccionadas.removeChild(opcionSeleccionada);
@@ -43,19 +42,17 @@ function validarFormulario() {
     const sexo = document.querySelector('input[name="sexo"]:checked').value;
     const aficionesSeleccionadas = document.getElementById('aficionesSeleccionadas').options;
 
-    // Validar campos obligatorios
     if (!nombre || !apellidos || !email) {
         alert("Por favor, complete todos los campos obligatorios.");
         return;
     }
 
-    // Obtener aficiones seleccionadas
     let aficiones = [];
     for (let i = 0; i < aficionesSeleccionadas.length; i++) {
         aficiones.push(aficionesSeleccionadas[i].value);
     }
 
-    // Construir el mensaje
+    // mensaje
     let mensaje = sexo === 'Hombre' ? 'El usuario ' : 'La usuaria ';
     mensaje += `${nombre} ${apellidos} con correo electrónico ${email}. `;
 
@@ -66,7 +63,5 @@ function validarFormulario() {
     } else {
         mensaje += `Tiene como aficiones: ${aficiones.join(', ')}.`;
     }
-
-    // Mostrar el resultado en un alert
     alert(mensaje);
 }

@@ -7,24 +7,58 @@
     <style>
         .noticia {
             margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .noticia a {
+            text-decoration: none;
+            color: #000;
+        }
+        .botones-noticia {
+            display: flex;
+            gap: 10px;
+        }
+        #numEnlaces {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        textarea {
+            width: 100%;
+            max-width: 400px;
+            height: 100px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Ejercicio 2: Aplicación Web con jQuery</h1>
+    <h1>Ejercicio 2: Aplicación Web Prensa</h1>
     <div id="periodicos">
-        <a href="https://www.elpais.com">El País</a>
-        <a href="https://www.elmundo.es">El Mundo</a>
-        <a href="https://www.abc.es">ABC</a>
+        <p>Prensa local: <a href="https://www.lne.es">La Nueva España</a></p>
+        <p>Prensa local: <a href="https://www.elcomercio.es">El Comercio</a></p>
+        <p>Prensa nacional: <a href="https://www.elpais.com">El País</a></p>
     </div>
-    <p id="numEnlaces"></p>
+    <p id="numEnlaces">Número de enlaces a periódicos: <span id="contadorEnlaces"></span></p>
 
     <div id="noticias">
-        <div class="noticia">Noticia 1: Lorem ipsum dolor sit amet.</div>
-        <div class="noticia">Noticia 2: Consectetur adipiscing elit.</div>
+        <div class="noticia">
+            <a href="#">Noticia 1: Lorem ipsum dolor sit amet.</a>
+            <div class="botones-noticia">
+                <button class="mostrar">Mostrar</button>
+                <button class="ocultar">Ocultar</button>
+            </div>
+        </div>
+        <div class="noticia">
+            <a href="#">Noticia 2: Consectetur adipiscing elit.</a>
+            <div class="botones-noticia">
+                <button class="mostrar">Mostrar</button>
+                <button class="ocultar">Ocultar</button>
+            </div>
+        </div>
     </div>
-    <button id="mostrar">Mostrar Noticias</button>
-    <button id="ocultar">Ocultar Noticias</button>
 
     <textarea id="nuevaNoticia" maxlength="150" placeholder="Escribe una nueva noticia (máx. 150 caracteres)"></textarea>
     <button id="añadirNoticia">Añadir Noticia</button>
