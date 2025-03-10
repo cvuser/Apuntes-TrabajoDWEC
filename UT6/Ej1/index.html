@@ -38,14 +38,15 @@
                 <option value="Música">Música</option>
                 <option value="Lectura">Lectura</option>
             </select>
-            <button type="button" onclick="añadirAficion()">Añade afición</button>
+            <div>
+                <button type="button" onclick="añadirAficion()">Añade afición</button>
+                <button type="button" onclick="quitarAficion()">Quitar afición</button>
+            </div>
             <select id="aficionesSeleccionadas" size="4"></select>
         </div><br>
 
         <button type="button" onclick="validarFormulario()">Validar Formulario</button>
     </form>
-
-    <div id="resultado"></div>
 
     <script src="js/ejercicio1.js"></script>
 </body>
