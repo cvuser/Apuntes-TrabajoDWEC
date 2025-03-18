@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas con Categorías</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Lista de Tareas con Categorías</h1>
+    </header>
+
+    <section id="nueva-tarea">
+        <input type="text" id="texto-tarea" placeholder="Nueva tarea...">
+        <select id="categoria-tarea">
+            <option value="trabajo">Trabajo</option>
+            <option value="personal">Personal</option>
+            <option value="estudio">Estudio</option>
+        </select>
+        <button id="agregar-tarea">Agregar</button>
+    </section>
+
+    <section id="filtros">
+        <label for="filtrar-categoria">Filtrar por categoría:</label>
+        <select id="filtrar-categoria">
+            <option value="todas">Todas</option>
+            <option value="trabajo">Trabajo</option>
+            <option value="personal">Personal</option>
+            <option value="estudio">Estudio</option>
+        </select>
+    </section>
+
+    <section id="lista-tareas">
+        <h2>Lista de Tareas</h2>
+        <ul id="tareas"></ul>
+    </section>
+
+    <script src="./js/scripts.js"></script>
+</body>
+</html>

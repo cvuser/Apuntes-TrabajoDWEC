@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gestor de Tareas</h1>
+    </header>
+
+    <section id="nueva-tarea">
+        <input type="text" id="texto-tarea" placeholder="Nueva tarea...">
+        <select id="prioridad-tarea">
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+        </select>
+        <button id="agregar-tarea">Agregar</button>
+    </section>
+
+    <section id="filtros">
+        <label for="filtrar-prioridad">Filtrar por prioridad:</label>
+        <select id="filtrar-prioridad">
+            <option value="todas">Todas</option>
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+        </select>
+    </section>
+
+    <section id="lista-tareas">
+        <h2>Lista de Tareas</h2>
+        <ul id="tareas"></ul>
+    </section>
+
+    <script src="./js/scripts.js"></script>
+</body>
+</html>
